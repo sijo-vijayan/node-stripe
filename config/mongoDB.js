@@ -3,4 +3,4 @@
 var mongoose = require( 'mongoose' );
 var config = require( './index.js' );
 
-mongoose.connect( config.mongoURI );
+mongoose.connect( process.env.DATABASE_URL );
