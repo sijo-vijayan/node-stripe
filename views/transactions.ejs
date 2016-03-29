@@ -4,8 +4,18 @@
 			<h1>Transactions page</h1>
 			<h2>Create Stripe Payments</h2>
 			
-			<div id="success-alert" class="alert alert-success" style="display:none"></div>
-			<div id="danger-alert" class="alert alert-danger" style="display:none"></div>
+			<div id="success-alert" class="alert alert-success" style="display:none">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			</div>
+			<div id="danger-alert" class="alert alert-danger" style="display:none">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			</div>
+			<div id="success-alert2" class="alert alert-success" style="display:none">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			</div>
+			<div id="danger-alert2" class="alert alert-danger" style="display:none">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			</div>
 			
 			<form role="form" method="post" id="payment-form">
 				<input type="hidden" name="token" id="token" value="<%=token%>">
@@ -30,19 +40,19 @@
 				<div id="card-details">
 					<div class="form-group">
 						<label for="cardnumber">Card number </label>
-						<input type="text" class="form-control" name="customerid" id="cardnumber" class="card-number" value="4242424242424242">
+						<input type="text" class="form-control" name="customerid" id="cardnumber" value="4242424242424242">
 					</div>
 					<div class="form-group">
 						<label for="cvc">CVC: </label>
-						<input type="number" class="form-control" name="cvc" id="cvc" class="card-cvc" value="239">
+						<input type="number" class="form-control" name="cvc" id="cvc" value="239">
 					</div>
 					<div class="form-group">
 						<label for="card-expiry-month">Expired Month: </label>
-						<input type="number" class="form-control" name="card-expiry-month" id="card-expiry-month" class="card-expiry-month" value="03">
+						<input type="number" class="form-control" name="card-expiry-month" id="card-expiry-month" value="03">
 					</div>
 					<div class="form-group">
 						<label for="card-expiry-year">Expired Year: </label>
-						<input type="number" class="form-control" name="card-expiry-year" id="card-expiry-year" class="card-expiry-year" value="2016">
+						<input type="number" class="form-control" name="card-expiry-year" id="card-expiry-year" value="2016">
 					</div>
 				</div>
 				<% } %>

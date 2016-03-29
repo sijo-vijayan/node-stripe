@@ -19,21 +19,24 @@ $( document ).ready( function() {
 	var showMessage = function(response){
 		if ( response.status ) {
 			$( '#success-alert' ).text( response.message );
+			$( '#danger-alert' ).hide();
 			$( '#success-alert' ).show();
 		}else{
 			$( '#danger-alert' ).text( response.message );
 			$( '#danger-alert' ).show();
+			$( '#success-alert' ).hide();
 		}
 	}
     $( '#submittransaction' ).click( function() {
         
         if( !isSubmit ){
 
+			$("#submittransaction").attr("disabled", true);
             var tockenParams = {
-                number: $( '.card-number' ).val(),
-                cvc: $( '.card-cvc' ).val(),
-                exp_month: $( '.card-expiry-month' ).val(),
-                exp_year: $( '.card-expiry-year' ).val()
+                number: $( '#cardnumber' ).val(),
+                cvc: $( '#cvc' ).val(),
+                exp_month: $( '#card-expiry-month' ).val(),
+                exp_year: $( '#card-expiry-year' ).val()
             };
 
             var siteTocken = $( '#token' ).val();
@@ -53,6 +56,7 @@ $( document ).ready( function() {
 					// tocken key name changed to 'source_token' to avoid tocken overriding issue
 				}).done( function( response ) {
 					showMessage(response);
+					$("#submittransaction").attr("disabled", false);
 				});
 			}else{
 
@@ -78,6 +82,7 @@ $( document ).ready( function() {
 							// tocken key name changed to 'source_token' to avoid tocken overriding issue
 						}).done( function( response ) {
 							showMessage(response);
+							$("#submittransaction").attr("disabled", false);
 						});
 					}
 				});
@@ -86,10 +91,9 @@ $( document ).ready( function() {
 				Stripe.card.createToken( tockenParams, function( status, response ) {
 					if ( response.error ) {
 						// Show the errors on the form
-						$( '#danger-alert' ).text( response.error.message );
+						$( '#danger-alert2' ).text( response.error.message );
 						
 					}else {
-						//console.log('////savecard');
 						var token = response.id;
 						$.ajax({
 							url: '/savecard',
@@ -102,7 +106,15 @@ $( document ).ready( function() {
 							}
 							// tocken key name changed to 'source_token' to avoid tocken overriding issue
 						}).done( function( response ) {
-							showMessage(response);
+							if(response.status){
+								$( '#success-alert2' ).text( response.message );
+								$("#card-details").hide();
+								$("#use-existing-msg").show();
+								$("#use_saved_card").val(1);
+							}else{
+								$( '#success-alert2' ).text( response.error.message );
+							}
+
 						});
 					}
 				});

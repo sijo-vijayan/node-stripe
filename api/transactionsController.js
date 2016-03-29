@@ -23,11 +23,14 @@ exports.index = function( req, res, next ) {
 exports.createTransaction = function( req, res, next ) {
 
 	// tocken key name changed to 'source_token' to avoid tocken overriding issue
+	var userObj = req.decoded._doc;
+	var name = (userObj.name) ? userObj.name: 'None';
+	var id = (userObj._id) ? userObj._id: 'None';
     Stripe.charges.create( {
         amount: req.body.amount,
         currency: req.body.currency,
         source: req.body.source_token,
-        description: 'Charge for test@example.com'
+        description: 'customer username :' + name + ', id: '+ id
     }, function( err, charge ) {
         if ( err ) {
 			res.status( 200 ).json( {
