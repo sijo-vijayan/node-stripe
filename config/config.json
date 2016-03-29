@@ -1,0 +1,5 @@
+{
+    "mongoURI": "mongodb://localhost/nodejstest",
+    "secret": "thisisasecret",
+    "stripeApiKey": "sk_test_3OcaPBX4N20XY1mh7PBoOW2z"
+}
