@@ -1,4 +1,4 @@
-# nodejs-test-case
+# nodejs-stripe-integration
  Sample code for stripe integration
 
 1. Fork this repo
